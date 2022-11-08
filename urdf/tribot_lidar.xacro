@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="tribot_lidar">
+
+    <xacro:macro name="tribot_lidar">
+        <!-- Create laser reference frame -->
+        <link
+            name="lidar_link">
+            <inertial>
+            <origin
+                xyz="1.36434720762702E-05 -1.44740607596658E-18 -0.00698948248298292"
+                rpy="0 0 0" />
+            <mass
+                value="0.109869393334793" />
+            <inertia
+                ixx="4.09822179723856E-05"
+                ixy="-9.88105863196233E-23"
+                ixz="-3.44612342419914E-08"
+                iyy="4.1009202270821E-05"
+                iyz="-4.05895586449359E-21"
+                izz="5.0549647269255E-05" />
+            </inertial>
+            <visual>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                filename="package://tribot_description/meshes/lidar_link.STL" />
+            </geometry>
+            <material
+                name="">
+                <color
+                rgba="1 1 1 1" />
+            </material>
+            </visual>
+            <collision>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                filename="package://tribot_description/meshes/lidar_link.STL" />
+            </geometry>
+            </collision>
+        </link>
+
+        <!-- reference here must be the same with link name above -->
+        <gazebo reference="lidar_link">
+            <material>Gazebo/Black</material>
+        </gazebo>
+        <gazebo reference="lidar_link">
+            <sensor type="ray" name="tribot_lidar">
+                <pose>0 0 0 0 0 0</pose>
+                <visualize>false</visualize>
+                <update_rate>5.5</update_rate>
+                <ray>
+                    <scan>
+                      <horizontal>
+                        <samples>720</samples>
+                        <resolution>0.5</resolution>
+                        <min_angle>-3.14</min_angle>
+                        <max_angle>3.14</max_angle>
+                      </horizontal>
+                    </scan>
+                    <range>
+                      <min>0.2</min>
+                      <max>2</max>
+                      <resolution>0.01</resolution>
+                    </range>
+                    <noise>
+                      <type>gaussian</type>
+                      <mean>0.001</mean>
+                      <stddev>0.001</stddev>
+                    </noise>
+                </ray>
+                <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
+                    <topicName>/scan</topicName>
+                    <frameName>lidar_link</frameName>
+                    <!-- the same name with reference="lidar_link" -->
+                </plugin>
+            </sensor>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

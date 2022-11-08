@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="tribot_wheel">
+    <xacro:macro name="tribot_wheel" params="prefix">
+
+        <gazebo reference="${prefix}_link">
+            <material>Gazebo/DarkGrey</material>
+        </gazebo>
+    </xacro:macro>
+</robot>

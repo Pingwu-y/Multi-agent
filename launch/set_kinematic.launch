@@ -1,0 +1,4 @@
+<launch>
+    <node name="set_kinematic" pkg="tribot_description" type="kinematic.py" output="screen">
+    </node>
+</launch>

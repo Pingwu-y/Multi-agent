@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="tribot_description">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0142603857901154 0.0599787969233426 1.44010907857361E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.664049355983333" />
+      <inertia
+        ixx="0.0018092011652393"
+        ixy="5.86355846547153E-05"
+        ixz="-6.25148858144493E-19"
+        iyy="0.00242024125021245"
+        iyz="6.82341546852814E-19"
+        izz="0.00185445818753784" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link
+    name="wheel1_link">
+    <inertial>
+      <origin
+        xyz="-7.80625564189563E-18 0.00749999999999999 3.46944695195361E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.0241745554693735" />
+      <inertia
+        ixx="3.74705609775289E-06"
+        ixy="-8.52717906119514E-23"
+        ixz="2.11758236813575E-22"
+        iyy="6.58756636540427E-06"
+        iyz="-4.61715353010736E-22"
+        izz="3.74705609775289E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/wheel1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/wheel1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel1_joint"
+    type="continuous">
+    <origin
+      xyz="0.09 0 0.013"
+      rpy="-3.14159265358979 0.437782614461058 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel1_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+  <link
+    name="wheel2_link">
+    <inertial>
+      <origin
+        xyz="1.56125112837913E-17 -0.0354359291783573 2.08166817117217E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.0241745554693735" />
+      <inertia
+        ixx="3.74705609775289E-06"
+        ixy="-1.05879118406788E-22"
+        ixz="4.76456032830544E-22"
+        iyy="6.58756636540427E-06"
+        iyz="-6.35274710440725E-22"
+        izz="3.74705609775289E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/wheel2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/wheel2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel2_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0310320354108216 0.053749061993819 0.013"
+      rpy="0 0.656633921478255 -2.61799387799149" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel2_link" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+
+  <link
+    name="wheel3_link">
+    <inertial>
+      <origin
+        xyz="-3.46944695195361E-18 -0.00375000000000011 1.73472347597681E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.0241745554693735" />
+      <inertia
+        ixx="3.74705609775289E-06"
+        ixy="-4.76456032830544E-22"
+        ixz="2.91167575618666E-22"
+        iyy="6.58756636540428E-06"
+        iyz="-1.37642853928824E-21"
+        izz="3.74705609775289E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/wheel3_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/wheel3_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel3_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0468749999999992 -0.0811898816047915 0.013"
+      rpy="0 0.98745546738505 -0.52359877559829" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel3_link" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+
+  <link
+    name="lidar_link">
+    <inertial>
+      <origin
+        xyz="1.36434720762685E-05 0.0180105175170171 3.7540882202375E-19"
+        rpy="0 0 0" />
+      <mass
+        value="0.109869393334793" />
+      <inertia
+        ixx="4.09822179723856E-05"
+        ixy="-3.44612342419914E-08"
+        ixz="9.88106304040592E-23"
+        iyy="5.0549647269255E-05"
+        iyz="4.05894620495472E-21"
+        izz="4.1009202270821E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/lidar_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/lidar_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.109"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  
+  <link
+    name="camera_link">
+    <inertial>
+      <origin
+        xyz="9.73715840950623E-05 0.00766324059686525 0.00320483732373046"
+        rpy="0 0 0" />
+      <mass
+        value="0.0351031857894892" />
+      <inertia
+        ixx="4.87742489758018E-06"
+        ixy="-3.19135366871549E-08"
+        ixz="1.09543032106934E-08"
+        iyy="2.07013958270657E-05"
+        iyz="1.83645671473405E-08"
+        izz="1.72263336361694E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/camera_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tribot_description/meshes/camera_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.085 0 0.0785"
+      rpy="3.14159265358979 0 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
