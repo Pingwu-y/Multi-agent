@@ -138,7 +138,7 @@ if __name__=="__main__":
             pub.publish(twist)
 
     except:
-        print(e)
+        print(speedBindings.e)
 
     finally:
         twist = Twist()
