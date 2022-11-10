@@ -1,18 +1,7 @@
-'''
-FileName: 
-Description: 
-Autor: Liujunjie/Aries-441
-StudentNumber: 521021911059
-Date: 2022-11-10 19:20:24
-E-mail: sjtu.liu.jj@gmail.com/sjtu.1518228705@sjtu.edu.cn
-LastEditTime: 2022-11-10 20:53:06
-'''
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import rclpy
-from rclpy.node import Node
+import rospy
 from geometry_msgs.msg import Twist
 import sys, select, termios, tty
 
@@ -73,8 +62,8 @@ def vels(speed,turn):
 if __name__=="__main__":
     settings = termios.tcgetattr(sys.stdin)
     
-    rclpy.init(args='tribot_teleop')
-    #pub = Node.create_publisher(Node,Twist,'/cmd_vel',10)
+    rospy.init_node('tribot_teleop')
+    pub = rospy.Publisher('/cmd_vel', Twist, queue_size=5)
 
     x = 0
     th = 0
@@ -146,16 +135,15 @@ if __name__=="__main__":
             twist.angular.x = 0; 
             twist.angular.y = 0; 
             twist.angular.z = control_turn
-            #pub.publish(twist)
+            pub.publish(twist)
 
     except:
-        print(1,1.1)
+        print(speedBindings.e)
 
     finally:
         twist = Twist()
-        twist.linear.x = 0.0; twist.linear.y = 0.0; twist.linear.z = 0.0
-        twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = 0.0
-        #pub.publish(twist)
+        twist.linear.x = 0; twist.linear.y = 0; twist.linear.z = 0
+        twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = 0
+        pub.publish(twist)
 
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
-

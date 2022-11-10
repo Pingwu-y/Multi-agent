@@ -1,23 +1,10 @@
-'''
-FileName: 
-Description: 
-Autor: Liujunjie/Aries-441
-StudentNumber: 521021911059
-Date: 2022-11-10 19:20:01
-E-mail: sjtu.liu.jj@gmail.com/sjtu.1518228705@sjtu.edu.cn
-LastEditTime: 2022-11-10 20:49:11
-'''
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import rclpy
-from rclpy.node import Node
-from rclpy import time
+import rospy
 import numpy as np
 from gazebo_msgs.msg import ModelState
 from geometry_msgs.msg import Twist, TransformStamped
-from tf2_ros.static_transform_broadcaster import StaticTransformBroadcaster 
 # from nav_msgs.msg import Odometry
 from math import sin,cos,atan2
 import tf
@@ -43,20 +30,20 @@ class Set_Model_State(object):
         # newly added
         self.last_t=0
         self.dt=0
-        self.current_time = rclpy.time.Time()
+        self.current_time = rospy.get_time()
         self.state = self.State(init_x, init_y, init_z, init_theta) # 初始xyz
-        self.tf2_broadcaster = tf.TransformBroadcaster()
+        self.tf_broadcaster = tf.TransformBroadcaster()
         self.control_rate=10        # need to be adjusted further according to dt
         # publish the new position of levitator to gazebo
-        self.state_pub = rclpy.Publisher('gazebo/set_model_state', ModelState, queue_size=10)
+        self.state_pub = rospy.Publisher('gazebo/set_model_state', ModelState, queue_size=10)
         # subscribe control input
-        Node.create_subscription (Twist,'/cmd_vel', self.MotionCallback)
-        Node.create_subscription("gazebo/set_model_state", ModelState, self.broadcast_odom_tf)
+        rospy.Subscriber("/cmd_vel", Twist, self.MotionCallback)
+        rospy.Subscriber("gazebo/set_model_state", ModelState, self.broadcast_odom_tf)
     
     def broadcast_odom_tf(self,model_state):
         parent_frame = 'odom'
         child_frame = 'base_footprint'                 
-        time_now = rclpy.Time.now()
+        time_now = rospy.Time.now()
         translation = (model_state.pose.position.x, model_state.pose.position.y, model_state.pose.position.z)
         rotation = (model_state.pose.orientation.x,model_state.pose.orientation.y,model_state.pose.orientation.z,model_state.pose.orientation.w)
         # Send the transformation
@@ -68,7 +55,7 @@ class Set_Model_State(object):
     def MotionCallback(self,cmd_vel):
         state_t = ModelState()
         state_t.model_name = "tribot"
-        self.current_time = rclpy.get_time()
+        self.current_time = rospy.get_time()
         self.dt = self.current_time - self.last_t
         
         if (self.last_t==0):
@@ -120,9 +107,8 @@ class Set_Model_State(object):
         
 if __name__ == '__main__':
     try:
-        rclpy.init(args='set_kinematic')
+        rospy.init_node('set_kinematic', anonymous=True)
         state_set = Set_Model_State()
-        rclpy.spin()
-    except rclpy.ROSInterruptException:
+        rospy.spin()
+    except rospy.ROSInterruptException:
         pass
-
