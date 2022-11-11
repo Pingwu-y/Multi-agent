@@ -15,4 +15,4 @@
 + 迁移了tribot.py文件，但是publisher部分还需要完善
 
 ## TODO：
-+ 研究pub和sub，完成topic
++ 研究pub和sub，完成通信
