@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="tribot_camera">
+    <xacro:macro name="tribot_camera" params="prefix:=camera">
+        <link
+            name="${tf_prefix}camera_link">
+            <inertial>
+            <origin
+                xyz="-0.00733675940313475 9.73715840950891E-05 -0.00320483732373046"
+                rpy="0 0 0" />
+            <mass
+                value="0.0351031857894892" />
+            <inertia
+                ixx="2.07013958270657E-05"
+                ixy="-3.19135366871557E-08"
+                ixz="-1.83645671473402E-08"
+                iyy="4.87742489758018E-06"
+                iyz="-1.09543032106933E-08"
+                izz="1.72263336361694E-05" />
+            </inertial>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                    filename="package://tribot/meshes/camera_link.STL" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="1 1 1 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                    filename="package://tribot/meshes/camera_link.STL" />
+                </geometry>
+            </collision>
+        </link>
+
+        <!-- reference here must be the same with link name above -->
+        <gazebo reference="${tf_prefix}camera_link">
+            <material>Gazebo/Red</material>
+        </gazebo>
+        <gazebo reference="${tf_prefix}camera_link">
+            <sensor type="depth" name="${prefix}">
+                <always_on>true</always_on>
+                <update_rate>20.0</update_rate>
+                <camera>
+                    <horizontal_fov>${60.0*M_PI/180.0}</horizontal_fov>
+                    <image>
+                        <format>R8G8B8</format>
+                        <width>640</width>
+                        <height>480</height>
+                    </image>
+                    <clip>
+                        <near>0.05</near>
+                        <far>8.0</far>
+                    </clip>
+                </camera>
+                <plugin name="kinect_${prefix}_controller" filename="libgazebo_ros_openni_kinect.so">
+                    <robotNamespace>/</robotNamespace>
+                    <cameraName>${prefix}</cameraName>
+                    <alwaysOn>true</alwaysOn>
+                    <updateRate>10</updateRate>
+                    <imageTopicName>rgb/${tf_prefix}image_raw</imageTopicName>
+                    <depthImageTopicName>depth/${tf_prefix}image_raw</depthImageTopicName>
+                    <pointCloudTopicName>depth/${tf_prefix}points</pointCloudTopicName>
+                    <cameraInfoTopicName>rgb/${tf_prefix}camera_info</cameraInfoTopicName>
+                    <depthImageCameraInfoTopicName>depth/${tf_prefix}camera_info</depthImageCameraInfoTopicName>
+                    <frameName>${tf_prefix}camera_link</frameName>
+                    <!-- the same name with reference="camera_link" -->
+                    <baseline>0.1</baseline>
+                    <distortion_k1>0.0</distortion_k1>
+                    <distortion_k2>0.0</distortion_k2>
+                    <distortion_k3>0.0</distortion_k3>
+                    <distortion_t1>0.0</distortion_t1>
+                    <distortion_t2>0.0</distortion_t2>
+                    <pointCloudCutoff>0.4</pointCloudCutoff>
+                </plugin>
+            </sensor>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

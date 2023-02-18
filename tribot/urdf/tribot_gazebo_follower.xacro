@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<robot name="tribot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="M_PI" value="3.1415926"/>
+    <xacro:property name="tf_prefix" value="tribot1/"/>
+    <xacro:include filename="$(find tribot)/urdf/tribot_base.xacro" />
+    <xacro:tribot_base/>
+
+    <xacro:include filename="$(find tribot)/urdf/tribot_wheel.xacro" />
+      <link
+        name="${tf_prefix}wheel1_link">
+        <inertial>
+          <origin
+            xyz="-7.80625564189563E-18 0.00749999999999999 3.46944695195361E-18"
+            rpy="0 0 0" />
+          <mass
+            value="0.0241745554693735" />
+          <inertia
+            ixx="3.74705609775289E-06"
+            ixy="-8.52717906119514E-23"
+            ixz="2.11758236813575E-22"
+            iyy="6.58756636540427E-06"
+            iyz="-4.61715353010736E-22"
+            izz="3.74705609775289E-06" />
+        </inertial>
+        <visual>
+          <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+          <geometry>
+            <mesh
+              filename="package://tribot/meshes/wheel1_link.STL" />
+          </geometry>
+          <material
+            name="">
+            <color
+              rgba="1 1 1 1" />
+          </material>
+        </visual>
+        <collision>
+          <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+          <geometry>
+            <mesh
+              filename="package://tribot/meshes/wheel1_link.STL" />
+          </geometry>
+        </collision>
+      </link>
+      <joint
+        name="wheel1_joint"
+        type="continuous">
+        <origin
+          xyz="0.09 0 0.013"
+          rpy="-3.14159265358979 0.437782614461058 1.5707963267949" />
+        <parent
+          link="${tf_prefix}base_link" />
+        <child
+          link="${tf_prefix}wheel1_link" />
+        <axis
+          xyz="0 1 0" />
+      </joint>
+    <xacro:tribot_wheel prefix="wheel1"/>
+
+    <xacro:include filename="$(find tribot)/urdf/tribot_wheel.xacro" />
+      <link
+        name="${tf_prefix}wheel2_link">
+        <inertial>
+          <origin
+            xyz="1.56125112837913E-17 -0.0354359291783573 2.08166817117217E-17"
+            rpy="0 0 0" />
+          <mass
+            value="0.0241745554693735" />
+          <inertia
+            ixx="3.74705609775289E-06"
+            ixy="-1.05879118406788E-22"
+            ixz="4.76456032830544E-22"
+            iyy="6.58756636540427E-06"
+            iyz="-6.35274710440725E-22"
+            izz="3.74705609775289E-06" />
+        </inertial>
+        <visual>
+          <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+          <geometry>
+            <mesh
+              filename="package://tribot/meshes/wheel2_link.STL" />
+          </geometry>
+          <material
+            name="">
+            <color
+              rgba="1 1 1 1" />
+          </material>
+        </visual>
+        <collision>
+          <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+          <geometry>
+            <mesh
+              filename="package://tribot/meshes/wheel2_link.STL" />
+          </geometry>
+        </collision>
+      </link>
+      <joint
+        name="wheel2_joint"
+        type="continuous">
+        <origin
+          xyz="-0.0310320354108216 0.053749061993819 0.013"
+          rpy="0 0.656633921478255 -2.61799387799149" />
+        <parent
+          link="${tf_prefix}base_link" />
+        <child
+          link="${tf_prefix}wheel2_link" />
+        <axis
+          xyz="0 -1 0" />
+      </joint>
+    <xacro:tribot_wheel prefix="wheel2"/>
+
+    <xacro:include filename="$(find tribot)/urdf/tribot_wheel.xacro" />
+      <link
+        name="${tf_prefix}wheel3_link">
+        <inertial>
+          <origin
+            xyz="-3.46944695195361E-18 -0.00375000000000011 1.73472347597681E-17"
+            rpy="0 0 0" />
+          <mass
+            value="0.0241745554693735" />
+          <inertia
+            ixx="3.74705609775289E-06"
+            ixy="-4.76456032830544E-22"
+            ixz="2.91167575618666E-22"
+            iyy="6.58756636540428E-06"
+            iyz="-1.37642853928824E-21"
+            izz="3.74705609775289E-06" />
+        </inertial>
+        <visual>
+          <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+          <geometry>
+            <mesh
+              filename="package://tribot/meshes/wheel3_link.STL" />
+          </geometry>
+          <material
+            name="">
+            <color
+              rgba="1 1 1 1" />
+          </material>
+        </visual>
+        <collision>
+          <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+          <geometry>
+            <mesh
+              filename="package://tribot/meshes/wheel3_link.STL" />
+          </geometry>
+        </collision>
+      </link>
+      <joint
+        name="wheel3_joint"
+        type="continuous">
+        <origin
+          xyz="-0.0468749999999992 -0.0811898816047915 0.013"
+          rpy="0 0.98745546738505 -0.52359877559829" />
+        <parent
+          link="${tf_prefix}base_link" />
+        <child
+          link="${tf_prefix}wheel3_link" />
+        <axis
+          xyz="0 -1 0" />
+      </joint>
+    <xacro:tribot_wheel prefix="wheel3"/>
+    
+    <xacro:include filename="$(find tribot)/urdf/tribot_lidar.xacro" />
+      <joint
+        name="${tf_prefix}lidar_joint"
+        type="fixed">
+        <origin
+          xyz="0 0 0.134"
+          rpy="0 0 0" />
+        <parent
+          link="${tf_prefix}base_link" />
+        <child
+          link="${tf_prefix}lidar_link" />
+        <axis
+          xyz="0 0 0" />
+      </joint>
+    <xacro:tribot_lidar/>
+
+    <xacro:include filename="$(find tribot)/urdf/tribot_camera.xacro" />
+      <joint
+        name="camera_joint"
+        type="fixed">
+        <origin
+          xyz="0.1 0 0.0785"
+          rpy="0 0 0" />
+        <parent
+          link="${tf_prefix}base_link" />
+        <child
+          link="${tf_prefix}camera_link" />
+        <axis
+          xyz="0 0 0" />
+      </joint>
+    <xacro:tribot_camera/>
+</robot>
