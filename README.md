@@ -1,6 +1,7 @@
-# multi-agent
-Research on multi-agent distributed dynamic formation control algorithm
-本项目为上海交通大学五位本科生的大学生创新实践项目。
-  
-# 使用说明  
-每位组员请至少开一支带有自己名字缩写的分支
+# Overview
+## Multi-Agent Distributed Encirclement Control
+
+This project is 26th Student Innovation and Entrepreneurship Program of SJTU in 2023, which implements a multi-agent encirclement control algorithm using **Reinforcement Learning**. It combines simulation in Gazebo and real-world tests with omnidirectional robots via **ROS2**. 
+
+
+![alt text](results.png)
